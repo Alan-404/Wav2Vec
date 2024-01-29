@@ -15,9 +15,9 @@ class Wav2Vec(nn.Module):
                  n_layers: int,
                  d_model: int,
                  heads: int,
-                 conv_dims: Union[List[str], Tuple[str]] = (512, 512, 512, 512, 512, 512, 512, 512, 512), 
-                 kernel_sizes: Union[List[str], Tuple[str]] = (10, 3, 3, 3, 3, 2, 2, 2, 2), 
-                 strides: Union[List[str], Tuple[str]] = (5, 2, 2, 2, 2, 2, 2, 2, 2),
+                 conv_dims: Union[List[str], Tuple[str]] = (512, 512, 512, 512, 512, 512, 512), 
+                 kernel_sizes: Union[List[str], Tuple[str]] = (10, 3, 3, 3, 2, 2, 2), 
+                 strides: Union[List[str], Tuple[str]] = (5, 2, 2, 2, 2, 2, 2),
                  dropout_rate: float = 0.0) -> None:
         super().__init__()
 
