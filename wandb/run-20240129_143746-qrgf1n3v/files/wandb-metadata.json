@@ -1,0 +1,115 @@
+{
+    "os": "Linux-6.5.0-15-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "heartbeatAt": "2024-01-29T07:37:48.344044",
+    "startedAt": "2024-01-29T07:37:46.346575",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--train_path",
+        "./datasets/vivos-train.csv",
+        "--batch_size",
+        "4",
+        "--num_epochs",
+        "5"
+    ],
+    "state": "running",
+    "program": "/home/alan/src/Wav2Vec/train.py",
+    "codePathLocal": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/Alan-404/Wav2Vec.git",
+        "commit": "4e1a49f28a594531378c0c90fbfd2debbd312893"
+    },
+    "email": "nguyentri.alan@gmail.com",
+    "root": "/home/alan/src/Wav2Vec",
+    "host": "alan-ASUS-TUF-Gaming-A15-FA506IH-FA506IH",
+    "username": "alan",
+    "executable": "/usr/bin/python3",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 1907.6385833333334,
+        "min": 1400.0,
+        "max": 3000.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1213.867,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1232.407,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1629.423,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1693.723,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1212.394,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1216.256,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1397.446,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1397.398,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1397.403,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1624.862,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1397.418,
+            "min": 1400.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1525.817,
+            "min": 1400.0,
+            "max": 3000.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 915.3232879638672,
+            "used": 66.86323547363281
+        }
+    },
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1650",
+            "memory_total": 4294967296
+        }
+    ],
+    "memory": {
+        "total": 15.036205291748047
+    }
+}

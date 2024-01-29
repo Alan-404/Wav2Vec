@@ -31,15 +31,18 @@ class Wav2Vec(nn.Module):
     def forward(self, x: torch.Tensor, lengths: Optional[torch.Tensor] = None):
         x = x.unsqueeze(1)
         x, lengths = self.extraction(x, lengths)
-        x = x.transpose(1,2)
+        x = x.transpose(1, 2)
 
         mask = None
         if lengths is not None:
-            mask = generate_mask(lengths)
+            mask = generate_mask(lengths).to(x.device)
+            mask = (mask == 0).unsqueeze(1).unsqueeze(1)
 
         x = self.projection(x)
         x = self.encoder(x, mask)
 
         x = self.decoder(x)
 
+        if lengths is not None:
+            return x, lengths
         return x

@@ -13,17 +13,11 @@ class ExtractionLayer(nn.Module):
         self.kernel_size = kernel_size
         self.stride = stride
 
-    def get_length(self, lengths: torch.Tensor):
-        return (((lengths - self.kernel_size) / self.stride) + 1).type(torch.int)
-
-    def forward(self, x: torch.Tensor, lengths: Optional[torch.Tensor] = None):
+    def forward(self, x: torch.Tensor):
         x = self.conv(x)
         x = x.transpose(1, 2)
         x = self.norm(x)
         x = x.transpose(1, 2)
         x = self.activation(x)
 
-        if lengths is not None:
-            lengths = self.get_length(lengths)
-
-        return x, lengths
+        return x

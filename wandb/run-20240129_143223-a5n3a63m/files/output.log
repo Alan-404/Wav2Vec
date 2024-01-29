@@ -1,0 +1,180 @@
+
+Epoch 0:   0%|                                                                                                                                                          | 0/50 [00:00<?, ?it/s]
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+  | Name  | Type    | Params
+----------------------------------
+0 | model | Wav2Vec | 135 M
+----------------------------------
+135 M     Trainable params
+0         Non-trainable params
+135 M     Total params
+541.808   Total estimated model params size (MB)
+/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:441: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=11` in the `DataLoader` to improve performance.
+Traceback (most recent call last):
+  File "/home/alan/src/Wav2Vec/train.py", line 119, in <module>
+    fire.Fire(train)
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 141, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 475, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 691, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/home/alan/src/Wav2Vec/train.py", line 116, in train
+    trainer.fit(module, train_dataloaders=dataloader, val_dataloaders=val_dataloader if use_validation else None, ckpt_path=checkpoint)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 544, in fit
+    call._call_and_handle_interrupt(
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 580, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 989, in _run
+    results = self._run_stage()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1035, in _run_stage
+    self.fit_loop.run()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py", line 202, in run
+    self.advance()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py", line 359, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 136, in run
+    self.advance(data_fetcher)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 240, in advance
+    batch_output = self.automatic_optimization.run(trainer.optimizers[0], batch_idx, kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 187, in run
+    self._optimizer_step(batch_idx, closure)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 265, in _optimizer_step
+    call._call_lightning_module_hook(
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 157, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/core/module.py", line 1291, in optimizer_step
+    optimizer.step(closure=optimizer_closure)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/core/optimizer.py", line 151, in step
+    step_output = self._strategy.optimizer_step(self._optimizer, closure, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 230, in optimizer_step
+    return self.precision_plugin.optimizer_step(optimizer, model=model, closure=closure, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/plugins/precision/amp.py", line 77, in optimizer_step
+    closure_result = closure()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 140, in __call__
+    self._result = self.closure(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 126, in closure
+    step_output = self._step_fn()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 315, in _training_step
+    training_step_output = call._call_strategy_hook(trainer, "training_step", *kwargs.values())
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 309, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 382, in training_step
+    return self.lightning_module.training_step(*args, **kwargs)
+  File "/home/alan/src/Wav2Vec/module.py", line 45, in training_step
+    outputs, input_lengths = self.model(inputs, input_lengths)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/alan/src/Wav2Vec/model/wav2vec.py", line 33, in forward
+    x, lengths = self.extraction(x, lengths)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/alan/src/Wav2Vec/model/modules/extraction.py", line 20, in forward
+    x, lengths = layer(x, lengths)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/alan/src/Wav2Vec/model/utils/convolution.py", line 20, in forward
+    x = self.conv(x)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 310, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 306, in _conv_forward
+    return F.conv1d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [512, 1, 10], expected input[1, 73000, 1] to have 1 channels, but got 73000 channels instead
+Traceback (most recent call last):
+  File "/home/alan/src/Wav2Vec/train.py", line 119, in <module>
+    fire.Fire(train)
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 141, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 475, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 691, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/home/alan/src/Wav2Vec/train.py", line 116, in train
+    trainer.fit(module, train_dataloaders=dataloader, val_dataloaders=val_dataloader if use_validation else None, ckpt_path=checkpoint)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 544, in fit
+    call._call_and_handle_interrupt(
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 580, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 989, in _run
+    results = self._run_stage()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1035, in _run_stage
+    self.fit_loop.run()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py", line 202, in run
+    self.advance()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py", line 359, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 136, in run
+    self.advance(data_fetcher)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 240, in advance
+    batch_output = self.automatic_optimization.run(trainer.optimizers[0], batch_idx, kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 187, in run
+    self._optimizer_step(batch_idx, closure)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 265, in _optimizer_step
+    call._call_lightning_module_hook(
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 157, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/core/module.py", line 1291, in optimizer_step
+    optimizer.step(closure=optimizer_closure)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/core/optimizer.py", line 151, in step
+    step_output = self._strategy.optimizer_step(self._optimizer, closure, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 230, in optimizer_step
+    return self.precision_plugin.optimizer_step(optimizer, model=model, closure=closure, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/plugins/precision/amp.py", line 77, in optimizer_step
+    closure_result = closure()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 140, in __call__
+    self._result = self.closure(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 126, in closure
+    step_output = self._step_fn()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 315, in _training_step
+    training_step_output = call._call_strategy_hook(trainer, "training_step", *kwargs.values())
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 309, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py", line 382, in training_step
+    return self.lightning_module.training_step(*args, **kwargs)
+  File "/home/alan/src/Wav2Vec/module.py", line 45, in training_step
+    outputs, input_lengths = self.model(inputs, input_lengths)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/alan/src/Wav2Vec/model/wav2vec.py", line 33, in forward
+    x, lengths = self.extraction(x, lengths)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/alan/src/Wav2Vec/model/modules/extraction.py", line 20, in forward
+    x, lengths = layer(x, lengths)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/alan/src/Wav2Vec/model/utils/convolution.py", line 20, in forward
+    x = self.conv(x)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 310, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 306, in _conv_forward
+    return F.conv1d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [512, 1, 10], expected input[1, 73000, 1] to have 1 channels, but got 73000 channels instead

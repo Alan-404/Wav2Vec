@@ -1,0 +1,28 @@
+2024-01-29 14:33:16,747 INFO    MainThread:19474 [wandb_setup.py:_flush():76] Current SDK version is 0.16.2
+2024-01-29 14:33:16,747 INFO    MainThread:19474 [wandb_setup.py:_flush():76] Configure stats pid to 19474
+2024-01-29 14:33:16,747 INFO    MainThread:19474 [wandb_setup.py:_flush():76] Loading settings from /home/alan/.config/wandb/settings
+2024-01-29 14:33:16,747 INFO    MainThread:19474 [wandb_setup.py:_flush():76] Loading settings from /home/alan/src/Wav2Vec/wandb/settings
+2024-01-29 14:33:16,747 INFO    MainThread:19474 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-01-29 14:33:16,747 INFO    MainThread:19474 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-01-29 14:33:16,747 INFO    MainThread:19474 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'train.py', 'program_abspath': '/home/alan/src/Wav2Vec/train.py', 'program': '/home/alan/src/Wav2Vec/train.py'}
+2024-01-29 14:33:16,748 INFO    MainThread:19474 [wandb_init.py:_log_setup():526] Logging user logs to /home/alan/src/Wav2Vec/wandb/run-20240129_143316-bv0o32ps/logs/debug.log
+2024-01-29 14:33:16,748 INFO    MainThread:19474 [wandb_init.py:_log_setup():527] Logging internal logs to /home/alan/src/Wav2Vec/wandb/run-20240129_143316-bv0o32ps/logs/debug-internal.log
+2024-01-29 14:33:16,748 INFO    MainThread:19474 [wandb_init.py:init():566] calling init triggers
+2024-01-29 14:33:16,748 INFO    MainThread:19474 [wandb_init.py:init():573] wandb.init called with sweep_config: {}
+config: {}
+2024-01-29 14:33:16,748 INFO    MainThread:19474 [wandb_init.py:init():616] starting backend
+2024-01-29 14:33:16,748 INFO    MainThread:19474 [wandb_init.py:init():620] setting up manager
+2024-01-29 14:33:16,748 INFO    MainThread:19474 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-01-29 14:33:16,749 INFO    MainThread:19474 [wandb_init.py:init():628] backend started and connected
+2024-01-29 14:33:16,752 INFO    MainThread:19474 [wandb_init.py:init():720] updated telemetry
+2024-01-29 14:33:16,760 INFO    MainThread:19474 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2024-01-29 14:33:17,971 INFO    MainThread:19474 [wandb_run.py:_on_init():2254] communicating current version
+2024-01-29 14:33:18,480 INFO    MainThread:19474 [wandb_run.py:_on_init():2263] got version response 
+2024-01-29 14:33:18,480 INFO    MainThread:19474 [wandb_init.py:init():804] starting run threads in backend
+2024-01-29 14:33:18,563 INFO    MainThread:19474 [wandb_run.py:_console_start():2233] atexit reg
+2024-01-29 14:33:18,563 INFO    MainThread:19474 [wandb_run.py:_redirect():2088] redirect: wrap_raw
+2024-01-29 14:33:18,563 INFO    MainThread:19474 [wandb_run.py:_redirect():2153] Wrapping output streams.
+2024-01-29 14:33:18,563 INFO    MainThread:19474 [wandb_run.py:_redirect():2178] Redirects installed.
+2024-01-29 14:33:18,564 INFO    MainThread:19474 [wandb_init.py:init():847] run started, returning control to user process
+2024-01-29 14:33:18,879 INFO    MainThread:19474 [wandb_run.py:_config_callback():1342] config_cb None None {'pad_token': 0, 'metric_fx': 'decode_batch', 'token_size': 369, 'n_layers': 17, 'd_model': 768, 'heads': 12, 'conv_dims': [512, 512, 512, 512, 512, 512, 512], 'kernel_sizes': [10, 3, 3, 3, 3, 2, 2], 'strides': [5, 2, 2, 2, 2, 2, 2], 'dropout_rate': 0.1}
+2024-01-29 14:33:28,614 WARNING MsgRouterThr:19474 [router.py:message_loop():77] message_loop has been closed

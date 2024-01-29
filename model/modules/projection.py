@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 
-
 class FeatureProjection(nn.Module):
     def __init__(self, in_features: int, out_features: int, dropout_rate: float = 0.0) -> None:
         super().__init__()

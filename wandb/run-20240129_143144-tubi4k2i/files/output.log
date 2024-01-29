@@ -1,0 +1,127 @@
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+  | Name  | Type    | Params
+----------------------------------
+0 | model | Wav2Vec | 135 M
+----------------------------------
+135 M     Trainable params
+0         Non-trainable params
+135 M     Total params
+541.808   Total estimated model params size (MB)
+/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:441: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=11` in the `DataLoader` to improve performance.
+Epoch 0:   0%|                                                                                                                                                          | 0/50 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/alan/src/Wav2Vec/train.py", line 119, in <module>
+    fire.Fire(train)
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 141, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 475, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 691, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/home/alan/src/Wav2Vec/train.py", line 116, in train
+    trainer.fit(module, train_dataloaders=dataloader, val_dataloaders=val_dataloader if use_validation else None, ckpt_path=checkpoint)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 544, in fit
+    call._call_and_handle_interrupt(
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 580, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 989, in _run
+    results = self._run_stage()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1035, in _run_stage
+    self.fit_loop.run()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py", line 202, in run
+    self.advance()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py", line 359, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 136, in run
+    self.advance(data_fetcher)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 202, in advance
+    batch, _, __ = next(data_fetcher)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fetchers.py", line 127, in __next__
+    batch = super().__next__()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fetchers.py", line 56, in __next__
+    batch = next(self.iterator)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/utilities/combined_loader.py", line 326, in __next__
+    out = next(self._iterator)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/utilities/combined_loader.py", line 74, in __next__
+    out[i] = next(self.iterators[i])
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1345, in _next_data
+    return self._process_data(data)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1371, in _process_data
+    data.reraise()
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/_utils.py", line 694, in reraise
+    raise exception
+TypeError: Caught TypeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 54, in fetch
+    return self.collate_fn(data)
+  File "/home/alan/src/Wav2Vec/train.py", line 102, in <lambda>
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda batch: get_batch(batch), num_workers=num_workers)
+  File "/home/alan/src/Wav2Vec/train.py", line 75, in get_batch
+    signals, signal_lengths = processor(signals, return_length=True)
+  File "/home/alan/src/Wav2Vec/preprocessing/processor.py", line 291, in __call__
+    return padded_signal, torch.stack(lengths)
+TypeError: expected Tensor as element 0 in argument 0, but got int
+Traceback (most recent call last):
+  File "/home/alan/src/Wav2Vec/train.py", line 119, in <module>
+    fire.Fire(train)
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 141, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 475, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+  File "/home/alan/.local/lib/python3.10/site-packages/fire/core.py", line 691, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/home/alan/src/Wav2Vec/train.py", line 116, in train
+    trainer.fit(module, train_dataloaders=dataloader, val_dataloaders=val_dataloader if use_validation else None, ckpt_path=checkpoint)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 544, in fit
+    call._call_and_handle_interrupt(
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 580, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 989, in _run
+    results = self._run_stage()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1035, in _run_stage
+    self.fit_loop.run()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py", line 202, in run
+    self.advance()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py", line 359, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 136, in run
+    self.advance(data_fetcher)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 202, in advance
+    batch, _, __ = next(data_fetcher)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fetchers.py", line 127, in __next__
+    batch = super().__next__()
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/loops/fetchers.py", line 56, in __next__
+    batch = next(self.iterator)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/utilities/combined_loader.py", line 326, in __next__
+    out = next(self._iterator)
+  File "/home/alan/.local/lib/python3.10/site-packages/lightning/pytorch/utilities/combined_loader.py", line 74, in __next__
+    out[i] = next(self.iterators[i])
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1345, in _next_data
+    return self._process_data(data)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1371, in _process_data
+    data.reraise()
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/_utils.py", line 694, in reraise
+    raise exception
+TypeError: Caught TypeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/alan/.local/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 54, in fetch
+    return self.collate_fn(data)
+  File "/home/alan/src/Wav2Vec/train.py", line 102, in <lambda>
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda batch: get_batch(batch), num_workers=num_workers)
+  File "/home/alan/src/Wav2Vec/train.py", line 75, in get_batch
+    signals, signal_lengths = processor(signals, return_length=True)
+  File "/home/alan/src/Wav2Vec/preprocessing/processor.py", line 291, in __call__
+    return padded_signal, torch.stack(lengths)
+TypeError: expected Tensor as element 0 in argument 0, but got int
