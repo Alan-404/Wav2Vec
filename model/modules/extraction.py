@@ -26,7 +26,7 @@ class FeatureExtraction(nn.Module):
     
     def forward(self, x: torch.Tensor, lengths: Optional[torch.Tensor] = None):
         for layer in self.layers:
-            x, lengths = layer(x)
+            x = layer(x)
 
         if lengths is not None:
             lengths = self.get_lengths(lengths)
