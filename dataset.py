@@ -67,7 +67,7 @@ class ConformerDataset(Dataset):
 
         return self.processor.load_audio(audio_path, start=start, end=end, role=role), transcript
 
-class ConformerTestDataset(Dataset):
+class Wav2VecTestDataset(Dataset):
     def __init__(self, manifest_path: str, processor: Wav2VecProcessor, num_examples: Optional[int] = None) -> None:
         super().__init__()
         self.prompts = pd.read_csv(manifest_path, sep="\t")
