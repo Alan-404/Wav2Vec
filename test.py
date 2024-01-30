@@ -52,17 +52,10 @@ def test(result_folder: str,
     # Processor Setup
     processor = Wav2VecProcessor(
         vocab_path=vocab_path,
-        num_mels=num_mels,
-        sampling_rate=sampling_rate,
-        n_fft=fft_size,
-        hop_length=hop_length,
-        win_length=win_length,
-        fmin=fmin,
-        fmax=fmax,
-        pad_token=pad_token,
         unk_token=unk_token,
+        pad_token=pad_token,
         word_delim_token=word_delim_token,
-        lm_path=arpa_path
+        sampling_rate=sampling_rate
     )
 
     # Model Setup
