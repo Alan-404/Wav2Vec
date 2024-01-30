@@ -17,29 +17,23 @@ from model.wav2vec import Wav2Vec
 from typing import Tuple
 from module import ConformerMetric
 from common import map_weights
-
+from typing import Optional, Union, List, Tuple
 def test(result_folder: str,
          test_path: str,
          vocab_path: str,
          arpa_path: str,
          checkpoint: str,
-         num_mels: int = 80,
          sampling_rate: int = 16000,
-         fft_size: int = 400,
-         hop_length: int = 160,
-         win_length: int = 400,
-         fmin: float = 0.0,
-         fmax: float = 8000.0,
          pad_token: str = "<pad>",
          unk_token: str = "<unk>",
          word_delim_token: str = "|",
-         n_blocks: int = 17,
-         d_model: int = 512,
-         heads: int = 8,
-         kernel_size: int = 31,
-         n_layers: int = 1,
-         hidden_dim: int = 640,
-         dropout_rate: float = 0.0,
+         n_layers: int = 12,
+          d_model: int = 768,
+          heads: int = 12,
+          conv_dims: Union[List[str], Tuple[str]] = (512, 512, 512, 512, 512, 512, 512),
+          kernel_sizes: Union[List[str], Tuple[str]] = (10, 3, 3, 3, 3, 2, 2),
+          strides: Union[List[str], Tuple[str]] = (5, 2, 2, 2, 2, 2, 2),
+          dropout_rate: float = 0.0,
          batch_size: int  = 1,
          num_examples: int = None,
          saved_name: str = None):
@@ -59,17 +53,7 @@ def test(result_folder: str,
     )
 
     # Model Setup
-    model = Wav2Vec(
-        vocab_size=len(processor.dictionary),
-        n_mel_channels=processor.num_mels,
-        n_blocks=n_blocks,
-        d_model=d_model,
-        heads=heads,
-        kernel_size=kernel_size,
-        n_layers=n_layers,
-        hidden_dim=hidden_dim,
-        dropout_rate=dropout_rate
-    ).to(device)
+    model = Wav2Vec(token_size=len(processor.dictionary), n_layers=n_layers, d_model=d_model, heads=heads, conv_dims=conv_dims, kernel_sizes=kernel_sizes, strides=strides, dropout_rate=dropout_rate).to(device)
 
     checkpoint = torch.load(checkpoint, map_location='cpu')
     if 'state_dict' in checkpoint.keys():
