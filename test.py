@@ -49,7 +49,8 @@ def test(result_folder: str,
         unk_token=unk_token,
         pad_token=pad_token,
         word_delim_token=word_delim_token,
-        sampling_rate=sampling_rate
+        sampling_rate=sampling_rate,
+        lm_path=arpa_path
     )
 
     # Model Setup
