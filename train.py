@@ -10,7 +10,7 @@ from lightning.pytorch.loggers.wandb import WandbLogger
 import fire
 
 from module import Wav2VecModule
-from preprocessing.processor import Wav2VecProcessor
+from processing.processor import Wav2VecProcessor
 from dataset import ConformerDataset
 
 from dotenv import load_dotenv
@@ -27,9 +27,9 @@ def train(train_path: str,
           n_layers: int = 12,
           d_model: int = 768,
           heads: int = 12,
-          conv_dims: Union[List[str], Tuple[str]] = (512, 512, 512, 512, 512, 512, 512),
-          kernel_sizes: Union[List[str], Tuple[str]] = (10, 3, 3, 3, 3, 2, 2),
-          strides: Union[List[str], Tuple[str]] = (5, 2, 2, 2, 2, 2, 2),
+          conv_dims: Union[List[str], Tuple[str]] = (512, 512, 512, 512, 512, 512, 512, 512),
+          kernel_sizes: Union[List[str], Tuple[str]] = (10, 3, 3, 3, 3, 2, 2, 2),
+          strides: Union[List[str], Tuple[str]] = (5, 2, 2, 2, 2, 2, 2, 2),
           dropout_rate: float = 0.1,
           sampling_rate: int = 16000,
           pad_token: str = "<pad>", 

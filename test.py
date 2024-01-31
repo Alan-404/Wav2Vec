@@ -11,7 +11,7 @@ from dataset import Wav2VecTestDataset
 
 import fire
 
-from preprocessing.processor import Wav2VecProcessor
+from processing.processor import Wav2VecProcessor
 from model.wav2vec import Wav2Vec
 
 from typing import Tuple

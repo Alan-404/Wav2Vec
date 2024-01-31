@@ -24,6 +24,7 @@ class Wav2VecModule(L.LightningModule):
                  strides: Union[List[str], Tuple[str]] = (5, 2, 2, 2, 2, 2, 2),
                  dropout_rate: float = 0.1) -> None:
         super().__init__()
+        self.metric_fx = metric_fx
         self.model = Wav2Vec(token_size=token_size, n_layers=n_layers, d_model=d_model, heads=heads, conv_dims=conv_dims, kernel_sizes=kernel_sizes, strides=strides, dropout_rate=dropout_rate)
 
         self.train_loss = []
@@ -33,7 +34,7 @@ class Wav2VecModule(L.LightningModule):
         self.criterion = ConformerCriterion(blank_id=pad_token)
         self.metric = ConformerMetric()
 
-        self.save_hyperparameters(ignore=[pad_token, metric_fx])
+        self.save_hyperparameters(ignore=['pad_token', 'metric_fx'])
 
     def training_step(self, batch: Tuple[torch.Tensor], _: int):
         inputs = batch[0]
