@@ -10,7 +10,7 @@ from lightning.pytorch.loggers.wandb import WandbLogger
 import fire
 
 from module import Wav2VecModule
-from preprocessing.processor import Wav2VecProcessor
+from processing.processor import Wav2VecProcessor
 from dataset import ConformerDataset
 
 from dotenv import load_dotenv

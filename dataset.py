@@ -1,5 +1,5 @@
 from torch.utils.data import Dataset
-from preprocessing.processor import Wav2VecProcessor
+from processing.processor import Wav2VecProcessor
 import pandas as pd
 from typing import Optional, Tuple
 import torch
