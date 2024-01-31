@@ -18,6 +18,7 @@ from typing import Tuple
 from module import ConformerMetric
 from common import map_weights
 from typing import Optional, Union, List, Tuple
+
 def test(result_folder: str,
          test_path: str,
          vocab_path: str,
@@ -28,12 +29,12 @@ def test(result_folder: str,
          unk_token: str = "<unk>",
          word_delim_token: str = "|",
          n_layers: int = 12,
-          d_model: int = 768,
-          heads: int = 12,
-          conv_dims: Union[List[str], Tuple[str]] = (512, 512, 512, 512, 512, 512, 512),
-          kernel_sizes: Union[List[str], Tuple[str]] = (10, 3, 3, 3, 3, 2, 2),
-          strides: Union[List[str], Tuple[str]] = (5, 2, 2, 2, 2, 2, 2),
-          dropout_rate: float = 0.0,
+         d_model: int = 768,
+         heads: int = 12,
+         conv_dims: Union[List[str], Tuple[str]] = (512, 512, 512, 512, 512, 512, 512, 512),
+         kernel_sizes: Union[List[str], Tuple[str]] = (10, 3, 3, 3, 3, 2, 2, 2),
+         strides: Union[List[str], Tuple[str]] = (5, 2, 2, 2, 2, 2, 2, 2),
+         dropout_rate: float = 0.0,
          batch_size: int  = 1,
          num_examples: int = None,
          saved_name: str = None):
@@ -66,8 +67,12 @@ def test(result_folder: str,
     metric = ConformerMetric()
 
     def get_batch(signals: torch.Tensor) -> [torch.Tensor, torch.Tensor, torch.Tensor]:
-        signals, signal_lengths = processor(signals, return_length=True)
-        return signals, signal_lengths
+        if len(signals) > 1:
+            signals, signal_lengths = processor(signals, return_length=True)
+            return signals, signal_lengths
+        
+        signals = processor(signals)
+        return signals
     
     dataset = Wav2VecTestDataset(test_path, processor, num_examples=num_examples)
     dataloader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=False, collate_fn=get_batch)
