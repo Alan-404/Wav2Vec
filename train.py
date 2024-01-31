@@ -103,7 +103,7 @@ def train(train_path: str,
 
     strategy = 'auto'
     if torch.cuda.device_count() > 1:
-        strategy = DDPStrategy(process_group_backend='gloo', find_unused_parameters=True)
+        strategy = DDPStrategy(process_group_backend='gloo')
 
     logger = WandbLogger(
         project=project_name,
