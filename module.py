@@ -15,7 +15,7 @@ class Wav2VecModule(L.LightningModule):
     def __init__(self,
                  pad_token: int,
                  metric_fx: Callable[[torch.Tensor, bool], str],
-                 token_size: int,
+                 token_size: int = 369,
                  n_layers: int = 17,
                  d_model: int = 768,
                  heads: int = 12,
@@ -34,7 +34,7 @@ class Wav2VecModule(L.LightningModule):
         self.criterion = ConformerCriterion(blank_id=pad_token)
         self.metric = ConformerMetric()
 
-        # self.save_hyperparameters(ignore=['pad_token', 'metric_fx'])
+        self.save_hyperparameters(ignore=['pad_token', 'metric_fx'])
 
     def training_step(self, batch: Tuple[torch.Tensor], _: int):
         inputs = batch[0]
