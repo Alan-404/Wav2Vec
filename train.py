@@ -68,7 +68,7 @@ def train(train_path: str,
             dropout_rate=dropout_rate
         )
     else:
-        module = Wav2VecModule.load_from_checkpoint(checkpoint)
+        module = Wav2VecModule.load_from_checkpoint(checkpoint, pad_token=processor.pad_token, metric_fx=processor.decode_batch)
 
     def get_batch(batch) -> [torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         signals, transcripts = zip(*batch)

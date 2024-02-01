@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+from model.utils.augment import Masked
 from model.utils.convolution import PositionalConvEmbedding
 from model.utils.block import Block
 
@@ -15,7 +16,7 @@ class Encoder(nn.Module):
         self.pe = PositionalConvEmbedding(d_model=d_model)
 
         self.layers = nn.ModuleList([Block(d_model=d_model, heads=heads, dropout_rate=dropout_rate) for _ in range(n_layers)])
-
+        
         self.post_norm = nn.LayerNorm(normalized_shape=d_model)
 
     def forward(self, x: torch.Tensor, mask: Optional[torch.Tensor] = None):
