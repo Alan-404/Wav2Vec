@@ -15,7 +15,7 @@ class Wav2VecModule(L.LightningModule):
     def __init__(self,
                  pad_token: int,
                  metric_fx: Callable[[torch.Tensor, bool], str],
-                 token_size: int = 369,
+                 token_size: int,
                  n_layers: int = 17,
                  d_model: int = 768,
                  heads: int = 12,
